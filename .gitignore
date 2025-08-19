@@ -1,0 +1,5 @@
+node_modules
+.env
+
+# Isso é do Code Spell
+.vscode 
