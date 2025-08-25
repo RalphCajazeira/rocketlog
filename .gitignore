@@ -3,3 +3,6 @@ node_modules
 
 # Isso é do Code Spell
 .vscode 
+
+// Isso é do Jest
+.cache/
