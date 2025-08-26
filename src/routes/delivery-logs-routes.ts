@@ -23,7 +23,7 @@ deliveryLogsRouter.get(
 );
 
 deliveryLogsRouter.get(
-  "/:delivery_id",
+  "/:delivery_id/show",
   ensureAuthenticated,
   verifyUserAuthorization(["sale", "admin", "customer"]),
   deliveriesLogsController.show
