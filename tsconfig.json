@@ -3,15 +3,22 @@
     "target": "ES2022",
     "lib": ["ES2023"],
 
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
 
-    "module": "Node16",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
     "strict": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "types": ["node", "jest"],
+    "sourceMap": true,
+    "inlineSources": true
+  },
+  "include": ["src"]
 }

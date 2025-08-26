@@ -1,16 +1,18 @@
 import type { Config } from "jest";
 
 const config: Config = {
-  bail: true, // para nos testes após o primeiro erro
+  bail: true,
+  verbose: true,
   clearMocks: true,
   coverageProvider: "v8",
   preset: "ts-jest",
   testEnvironment: "node",
-  roots: ["<rootDir>/src"], // garante que só a pasta src é monitorada
-  testMatch: ["**/tests/**/*.test.ts"], // procura apenas dentro de src/tests
-  moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
+  transform: {
+    "^.+\\.tsx?$": ["ts-jest", { tsconfig: "tsconfig.json" }],
   },
+  roots: ["<rootDir>/src"],
+  testMatch: ["**/tests/**/*.test.ts"],
+  moduleNameMapper: { "^@/(.*)$": "<rootDir>/src/$1" },
   testPathIgnorePatterns: [
     "/node_modules/",
     "<rootDir>/dist/",
@@ -25,7 +27,6 @@ const config: Config = {
     "<rootDir>/.eslintcache",
     "<rootDir>/.tsbuildinfo",
   ],
-  // cacheDirectory: "<rootDir>/.cache/jest", // cache previsível
 };
 
 export default config;
