@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { authConfig } from "@/configs/auth";
 import { AppError } from "@/utils/AppError";
 import { prisma } from "@/database/prisma";
-import { sign } from "jsonwebtoken";
+import { sign, type Secret, type SignOptions } from "jsonwebtoken";
 import { compare } from "bcrypt";
 import { z } from "zod";
 
@@ -27,12 +27,12 @@ class SessionsController {
       throw new AppError("Invalid email or password", 401);
     }
 
-    const { secret, expiresIn } = authConfig.jwt;
+    const secret: Secret = authConfig.jwt.secret;
 
     const token = sign({ role: user.role ?? "customer" }, secret, {
-      subject: user.id,
-      expiresIn,
-    });
+      subject: String(user.id),
+      expiresIn: authConfig.jwt.expiresIn,
+    } satisfies SignOptions);
 
     const { password: hashedPassword, ...userWithoutPassword } = user;
 

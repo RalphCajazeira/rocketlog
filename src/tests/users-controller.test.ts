@@ -46,7 +46,9 @@ describe("UsersController", () => {
 
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("Validation error");
-    expect(response.body.issues.email._errors).toContain("Invalid email");
+    expect(response.body.issues.email._errors).toContain(
+      "Invalid email address"
+    );
   });
 
   it("should return validation error if password is too short", async () => {
@@ -59,7 +61,7 @@ describe("UsersController", () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("Validation error");
     expect(response.body.issues.password._errors).toContain(
-      "String must contain at least 6 character(s)"
+      "Too small: expected string to have >=6 characters"
     );
   });
 
@@ -73,7 +75,7 @@ describe("UsersController", () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("Validation error");
     expect(response.body.issues.name._errors).toContain(
-      "String must contain at least 1 character(s)"
+      "Too small: expected string to have >=1 characters"
     );
   });
 });

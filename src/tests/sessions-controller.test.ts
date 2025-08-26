@@ -58,7 +58,9 @@ describe("SessionsController", () => {
 
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("Validation error");
-    expect(response.body.issues.email._errors).toContain("Invalid email");
+    expect(response.body.issues.email._errors).toContain(
+      "Invalid email address"
+    );
   });
 
   it("should throw an error if user not found", async () => {
@@ -69,6 +71,8 @@ describe("SessionsController", () => {
 
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("Validation error");
-    expect(response.body.issues.password._errors).toContain("String must contain at least 6 character(s)");
+    expect(response.body.issues.password._errors).toContain(
+      "Too small: expected string to have >=6 characters"
+    );
   });
 });
